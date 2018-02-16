@@ -1,0 +1,54 @@
+body {
+    background-image: url("../images/king_pillars.jpg");
+    color: gold;
+    font-family: 'Kavivanar', cursive;
+    font-size: 35px;
+}
+
+.title {
+    color: gold;
+    font-family: 'Irish Grover', cursive;
+    font-size: 60px;
+    text-shadow: 4px 4px black;
+    text-decoration: underline;
+}
+
+.container {
+    background-color: rgb(107, 1, 107);
+    border: 5px solid gold;
+    box-shadow: 8px 8px 8px black;
+    height: 550px;
+    margin-top: 10%;
+    position: relative;
+    width: 60%;
+}
+
+ul {
+    list-style-type: none;
+    width: 45%;
+}
+
+li:hover {
+    background-color: blue;
+    border: 2px solid gold;
+    cursor: pointer;
+}
+
+.startButton {
+    background-color: blue;
+    border: 2px solid gold;
+    width: 25%;
+}
+
+.start {
+    margin-top: 10%;
+}
+
+.startButton:hover {
+    cursor: pointer;
+}
+
+#answerGif {
+    
+}
+
