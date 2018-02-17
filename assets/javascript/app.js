@@ -164,22 +164,4 @@ $(function() {
             $(".actualAnswer").html("The Correct Answer was: " + questions[currentQuestion].correctAnswer);
         };
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
