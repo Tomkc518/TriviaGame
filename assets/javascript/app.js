@@ -45,15 +45,6 @@ $(function() {
         },
     ]
 
-    function displayAnswer(){
-        //remove the question and the list of answers and adds the question gif
-        clearInterval(counter);
-        $(".question").empty();
-        $("li").detach();
-        $("#answerGif").attr("src", questions[currentQuestion].gif);
-        nextQuestion();
-    };
-
     function clearPage(){
         //clears out the answer information page and stops the counter
         clearInterval(counter);
@@ -61,16 +52,6 @@ $(function() {
         $(".actualAnswer").empty();
         $("#answerGif").attr("src", "");
     };
-
-    $(".resetButton").on("click", function(){
-        //clears everything on the page, then hides the reset button and shows the start button again which can be pressed to start the game again
-        clearPage();
-        $("li").detach();
-        $(".question").empty();
-        $(".time").empty();
-        $(".resetButton").hide();
-        $(".startButton").show();
-    });
 
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -112,6 +93,15 @@ $(function() {
         };
     };
 
+    function displayAnswer(){
+        //remove the question and the list of answers and adds the question gif
+        clearInterval(counter);
+        $(".question").empty();
+        $("li").detach();
+        $("#answerGif").attr("src", questions[currentQuestion].gif);
+        nextQuestion();
+    };
+
     function nextQuestion() {
         //once the answer screen appears, after 6 seconds it goes to the next question or the score screen if there are any more questions.
         var answerCount = 6;
@@ -149,6 +139,16 @@ $(function() {
 
     //hides the reset button to make it appear later
     $(".resetButton").hide();
+
+    $(".resetButton").on("click", function(){
+        //clears everything on the page, then hides the reset button and shows the start button again which can be pressed to start the game again
+        clearPage();
+        $("li").detach();
+        $(".question").empty();
+        $(".time").empty();
+        $(".resetButton").hide();
+        $(".startButton").show();
+    });
 
     $(document).on('click', ".answers", function() {
         //assign which one was clicked
