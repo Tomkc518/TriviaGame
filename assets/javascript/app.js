@@ -100,18 +100,25 @@ $(function() {
         function answerTimer(){
             answerCount -= 1;
             if (answerCount <= 0){
-                if (currentQuestion <= questions.length){
+                currentQuestion++;
+                if (currentQuestion < questions.length){
                     clearInterval(answerCounter);
                     $("#answerGif").attr("src", "");
                     $(".answerResults").empty();
                     $(".actualAnswer").empty();
                     clearInterval(counter);
-                    currentQuestion++;
                     displayQuestion();
+                    console.log(currentQuestion);
+                    console.log(questions.length);
                 } else {
+                    clearInterval(counter);
+                    $(".answerResults").empty();
+                    $(".actualAnswer").empty();
+                    $("#answerGif").attr("src", "");
                     $(".answerResults").html("All Done, here's how you did!");
-                    $(".actualAnswer").html("Correct Answers: " + answersCorrect);
-                    $(".actualAnswer").html("Correct Answers: " + answersCorrect);
+                    $(".actualAnswer").append("Correct Answers: " + answersCorrect + "");
+                    $(".actualAnswer").append("<p>Answers Wrong: " + answersWrong + "</p>");
+                    $(".actualAnswer").append("<p>Questions Timed Out: " + answersTimed + "</p>");
                 };
             };
         };
