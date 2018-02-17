@@ -31,10 +31,12 @@ ul {
 li:hover {
     background-color: blue;
     border: 2px solid gold;
+    box-shadow: 6px 6px 6px black;
     cursor: pointer;
 }
 
-.startButton {
+.startButton,
+.resetButton {
     background-color: blue;
     border: 2px solid gold;
     width: 25%;
@@ -44,11 +46,10 @@ li:hover {
     margin-top: 10%;
 }
 
-.startButton:hover {
+.startButton:hover,
+.resetButton:hover {
+    box-shadow: 6px 6px 6px black;
     cursor: pointer;
 }
 
-#answerGif {
-    
-}
 

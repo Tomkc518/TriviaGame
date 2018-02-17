@@ -54,6 +54,24 @@ $(function() {
         nextQuestion();
     };
 
+    function clearPage(){
+        //clears out the answer information page and stops the counter
+        clearInterval(counter);
+        $(".answerResults").empty();
+        $(".actualAnswer").empty();
+        $("#answerGif").attr("src", "");
+    };
+
+    $(".resetButton").on("click", function(){
+        //clears everything on the page, then hides the reset button and shows the start button again which can be pressed to start the game again
+        clearPage();
+        $("li").detach();
+        $(".question").empty();
+        $(".time").empty();
+        $(".resetButton").hide();
+        $(".startButton").show();
+    });
+
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
         // While there remain elements to shuffle...
@@ -95,30 +113,26 @@ $(function() {
     };
 
     function nextQuestion() {
+        //once the answer screen appears, after 6 seconds it goes to the next question or the score screen if there are any more questions.
         var answerCount = 6;
         var answerCounter = setInterval(answerTimer, 1000); 
         function answerTimer(){
             answerCount -= 1;
             if (answerCount <= 0){
                 currentQuestion++;
+                //checks if there are still questions left, if there are, it goes to the next one, otherwise it goes to the score screen
                 if (currentQuestion < questions.length){
                     clearInterval(answerCounter);
-                    $("#answerGif").attr("src", "");
-                    $(".answerResults").empty();
-                    $(".actualAnswer").empty();
-                    clearInterval(counter);
+                    clearPage()
                     displayQuestion();
-                    console.log(currentQuestion);
-                    console.log(questions.length);
                 } else {
-                    clearInterval(counter);
-                    $(".answerResults").empty();
-                    $(".actualAnswer").empty();
-                    $("#answerGif").attr("src", "");
+                    clearInterval(answerCounter);
+                    clearPage()
                     $(".answerResults").html("All Done, here's how you did!");
-                    $(".actualAnswer").append("Correct Answers: " + answersCorrect + "");
-                    $(".actualAnswer").append("<p>Answers Wrong: " + answersWrong + "</p>");
-                    $(".actualAnswer").append("<p>Questions Timed Out: " + answersTimed + "</p>");
+                    $("ul").append("<li>Correct Answers: " + answersCorrect);
+                    $("ul").append("<li>Answers Wrong: " + answersWrong);
+                    $("ul").append("<li>Questions Timed Out: " + answersTimed);
+                    $(".resetButton").show();
                 };
             };
         };
@@ -127,9 +141,14 @@ $(function() {
     $(".startButton").on("click", function() {
         //hide the start button
         $(this).hide();
+        //restarts the questions when the game starts over
+        currentQuestion = 0
         //display the question
         displayQuestion();
     });
+
+    //hides the reset button to make it appear later
+    $(".resetButton").hide();
 
     $(document).on('click', ".answers", function() {
         //assign which one was clicked
