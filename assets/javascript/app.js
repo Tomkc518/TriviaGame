@@ -77,7 +77,6 @@ $(function() {
             $(".time").html("Time Remaining: " + count);
             //if the counter goes to 0 goes to the answer screen
             if (count <= 0){
-                clearInterval(counter);
                 answersTimed++;
                 displayAnswer();
                 $(".answerResults").html("Out of Time!");
