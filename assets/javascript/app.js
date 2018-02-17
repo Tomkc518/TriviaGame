@@ -1,6 +1,11 @@
 $(function() {    
     var currentQuestion = 0;
     var answerSelected = "";
+    var count;
+    var counter;
+    var answersCorrect = 0;
+    var answersWrong = 0;
+    var answersTimed = 0;
     var questions = [
         {
             question: "Who does Gandalf find eaves-dropping at the window of Bag End?",
@@ -42,6 +47,7 @@ $(function() {
 
     function displayAnswer(){
         //remove the question and the list of answers and adds the question gif
+        clearInterval(counter);
         $(".question").empty();
         $("li").detach();
         $("#answerGif").attr("src", questions[currentQuestion].gif);
@@ -65,19 +71,18 @@ $(function() {
      
     function displayQuestion(){
         //Once the question is displayed a timer starts
-        
-        var count = 51;
-        var counter = setInterval(timer, 1000);
+        count = 51;
+        counter = setInterval(timer, 1000);
         function timer(){
             count -= 1;
             $(".time").html("Time Remaining: " + count);
             //if the counter goes to 0 goes to the answer screen
             if (count <= 0){
                 clearInterval(counter);
+                answersTimed++;
                 displayAnswer();
                 $(".answerResults").html("Out of Time!");
                 $(".actualAnswer").html("The Correct Answer was: " + questions[currentQuestion].correctAnswer);
-            
             };
         };
         //displays the current question in the array
@@ -90,18 +95,24 @@ $(function() {
     };
 
     function nextQuestion() {
-        var answerCount = 4;
+        var answerCount = 6;
         var answerCounter = setInterval(answerTimer, 1000); 
         function answerTimer(){
             answerCount -= 1;
             if (answerCount <= 0){
-                clearInterval(answerCounter);
-                $("#answerGif").attr("src", "");
-                $(".answerResults").empty();
-                $(".actualAnswer").empty();
-                currentQuestion++;
-                displayQuestion();
-            
+                if (currentQuestion <= questions.length){
+                    clearInterval(answerCounter);
+                    $("#answerGif").attr("src", "");
+                    $(".answerResults").empty();
+                    $(".actualAnswer").empty();
+                    clearInterval(counter);
+                    currentQuestion++;
+                    displayQuestion();
+                } else {
+                    $(".answerResults").html("All Done, here's how you did!");
+                    $(".actualAnswer").html("Correct Answers: " + answersCorrect);
+                    $(".actualAnswer").html("Correct Answers: " + answersCorrect);
+                };
             };
         };
     };
@@ -118,15 +129,15 @@ $(function() {
         answerSelected = $(this).html();
         //once a selection is chosen, checks if its correct or not and goes to the answer screen
         if (answerSelected === questions[currentQuestion].correctAnswer) {
-            console.log("Correct Answer");
+            answersCorrect++;
             displayAnswer();
             $(".answerResults").html("Correct!");
         } else {
+            answersWrong++;
             displayAnswer();
             $(".answerResults").html("Nope!");
             $(".actualAnswer").html("The Correct Answer was: " + questions[currentQuestion].correctAnswer);
         };
-        
     });
 
 
