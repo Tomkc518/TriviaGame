@@ -1,6 +1,6 @@
 # Lord of the Rings Trivia!
 
-The game can be found here! https://tomkc518.github.io/TriviaGame/
+The game can be found here! [Game](https://tomkc518.github.io/trivia_game/)
 
 This game was all about dynamically updating the page with Javascript using jQuery and Bootstrap 4.
 

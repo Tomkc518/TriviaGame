@@ -1,14 +1,18 @@
 body {
-    background-image: url("../images/king_pillars.jpg");
+    background: url("../images/king_pillars.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: gold;
     font-family: 'Kavivanar', cursive;
-    font-size: 35px;
+    font-size: 2rem;
 }
 
 .title {
     color: gold;
     font-family: 'Irish Grover', cursive;
-    font-size: 60px;
+    font-size: 3rem;
     text-shadow: 4px 4px black;
     text-decoration: underline;
 }
@@ -17,15 +21,15 @@ body {
     background-color: rgb(107, 1, 107);
     border: 5px solid gold;
     box-shadow: 8px 8px 8px black;
-    height: 575px;
+    height: 625px;
     margin-top: 10%;
     position: relative;
-    width: 60%;
+    width: 75%;
 }
 
 ul {
     list-style-type: none;
-    width: 45%;
+    width: 100%;
 }
 
 li:hover {
@@ -50,4 +54,20 @@ li:hover {
 .resetButton:hover {
     box-shadow: 6px 6px 6px black;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    #answerGif {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #answerGif {
+        width: 90%;
+    }
+    .container {
+        height: 700px;
+        width: 100%;
+    }
 }

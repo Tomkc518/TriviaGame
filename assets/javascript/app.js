@@ -147,6 +147,9 @@ $(function() {
         $(".time").empty();
         $(".resetButton").hide();
         $(".startButton").show();
+        answersCorrect = 0;
+        answersWrong = 0;
+        answersTimed = 0;
     });
 
     $(document).on('click', ".answers", function() {
